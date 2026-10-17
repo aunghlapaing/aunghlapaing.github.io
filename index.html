@@ -38,7 +38,12 @@
     header { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
     .wordmark { font-family: var(--serif); font-size: 20px; letter-spacing: -.04em; }
     .wordmark span { color: var(--accent); }
+<<<<<<< HEAD
     nav { display: flex; align-items: center; gap: 35px; font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+=======
+    .profile-photo { display: block; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; object-position: center 28%; }
+    nav { display: flex; align-items: center; gap: 35px; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+>>>>>>> 8535aec (upgraded profile icon)
     nav a { transition: color .2s; } nav a:hover { color: var(--ink); }
     .theme-toggle { border: 1px solid var(--line); background: transparent; border-radius: 30px; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; transition: border-color .2s, transform .2s; }
     .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
@@ -104,7 +109,7 @@
 <body>
   <div class="wrap">
     <header>
-      <a class="wordmark" href="#top" aria-label="Aung Hla Paing home">AHP<span>.</span></a>
+      <a href="#top" aria-label="Aung Hla Paing home"><img class="profile-photo" src="my_photo.jpg" alt="Aung Hla Paing"></a>
       <nav aria-label="Main navigation">
         <a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" title="Switch theme">
