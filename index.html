@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f2">
+  <meta name="description" content="Portfolio of Aung Hla Paing: e-commerce operations, project coordination, customer support, and workflow automation.">
+  <title>Aung Hla Paing — Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f5f2;
+      --surface: #ecece8;
+      --ink: #171918;
+      --muted: #777c78;
+      --line: rgba(23, 25, 24, .14);
+      --accent: #718d86;
+      --glow: rgba(125, 157, 150, .20);
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #111514;
+      --surface: #191f1d;
+      --ink: #f0f1ed;
+      --muted: #9ca49f;
+      --line: rgba(240, 241, 237, .16);
+      --accent: #a2beb5;
+      --glow: rgba(113, 153, 143, .16);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); transition: background .35s, color .35s; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    .wrap { width: min(1100px, calc(100% - 64px)); margin: auto; }
+    header { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .wordmark { font-family: var(--serif); font-size: 20px; letter-spacing: -.04em; }
+    .wordmark span { color: var(--accent); }
+    nav { display: flex; align-items: center; gap: 35px; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+    nav a { transition: color .2s; } nav a:hover { color: var(--ink); }
+    .theme-toggle { border: 1px solid var(--line); background: transparent; border-radius: 30px; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; transition: border-color .2s, transform .2s; }
+    .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .hero { min-height: 660px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding: 80px 0 95px; position: relative; }
+    .eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .19em; font-size: 10px; display: flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
+    h1 { font: 400 clamp(55px, 7vw, 88px)/.98 var(--serif); letter-spacing: -.065em; margin: 28px 0 25px; }
+    h1 em { font-weight: 400; color: var(--accent); }
+    .intro { color: var(--muted); max-width: 350px; font-size: 14px; line-height: 1.85; margin-bottom: 33px; }
+    .cta { display: inline-flex; align-items: center; gap: 22px; font-size: 11px; letter-spacing: .08em; border-bottom: 1px solid var(--ink); padding: 0 0 9px; }
+    .cta span { font-size: 16px; transition: transform .2s; } .cta:hover span { transform: translateX(4px); }
+    .art { height: 430px; position: relative; display: grid; place-items: center; }
+    .art::before { content: ""; width: min(390px, 85%); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, var(--glow), transparent 69%); position: absolute; }
+    .sun { position: absolute; width: 155px; height: 155px; border: 1px solid var(--line); border-radius: 50%; top: 72px; right: 100px; }
+    .sun::after { content: ""; position: absolute; inset: 13px; border-radius: 50%; background: linear-gradient(145deg, rgba(255,255,255,.5), transparent 65%); opacity: .5; }
+    .wave { position: absolute; width: 100%; height: 200px; left: 0; bottom: 50px; overflow: hidden; }
+    .wave svg { width: 100%; height: 100%; overflow: visible; }
+    .wave path { fill: none; stroke: var(--accent); stroke-width: .8; opacity: .58; }
+    .wave path:nth-child(2) { opacity: .35; transform: translateY(13px); }
+    .wave path:nth-child(3) { opacity: .23; transform: translateY(26px); }
+    .art-note { position: absolute; bottom: 32px; right: 0; color: var(--muted); text-transform: uppercase; letter-spacing: .15em; font-size: 9px; }
+    .meta { position: absolute; bottom: 29px; left: 0; right: 0; border-top: 1px solid var(--line); padding-top: 14px; display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    section { border-top: 1px solid var(--line); padding: 88px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 38px; }
+    h2 { font: 400 42px/1 var(--serif); letter-spacing: -.05em; margin: 0; }
+    .section-kicker { color: var(--muted); text-transform: uppercase; letter-spacing: .14em; font-size: 9px; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project { min-height: 230px; border: 1px solid var(--line); padding: 26px; display: flex; flex-direction: column; justify-content: space-between; transition: background .25s, transform .25s; }
+    .project:hover { background: var(--surface); transform: translateY(-3px); }
+    .project-top { display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+    .project h3 { font: 400 29px var(--serif); letter-spacing: -.035em; margin: 30px 0 8px; }
+    .project p { color: var(--muted); margin: 0; font-size: 12px; line-height: 1.7; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .about-grid p { max-width: 440px; color: var(--muted); font-size: 14px; line-height: 1.9; margin: 0; }
+    .skills { display: flex; flex-wrap: wrap; gap: 9px; align-content: start; }
+    .skills span { border: 1px solid var(--line); border-radius: 30px; padding: 10px 15px; color: var(--muted); font-size: 10px; letter-spacing: .05em; }
+    .contact { display: flex; align-items: end; justify-content: space-between; }
+    .contact h2 { max-width: 480px; font-size: clamp(40px, 6vw, 70px); line-height: 1.02; }
+    .contact h2 em { color: var(--accent); font-weight: 400; }
+    .contact-link { margin-bottom: 8px; }
+    footer { border-top: 1px solid var(--line); min-height: 72px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; letter-spacing: .07em; }
+    footer a:hover { color: var(--ink); }
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 40px, 520px); }
+      header { height: 70px; } nav { gap: 17px; } nav a { display: none; } nav a:last-of-type { display: inline; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 0; padding: 80px 0 90px; }
+      h1 { font-size: clamp(62px, 16vw, 82px); }
+      .art { height: 300px; margin-top: 6px; } .sun { width: 120px; height: 120px; top: 40px; right: 18%; } .wave { bottom: 25px; height: 170px; }
+      .meta { bottom: 0; } .art-note { bottom: 7px; }
+      section { padding: 66px 0; } .section-head { margin-bottom: 26px; } h2 { font-size: 36px; }
+      .projects { grid-template-columns: 1fr; gap: 12px; } .project { min-height: 200px; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact { align-items: start; flex-direction: column; gap: 25px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="wordmark" href="#top" aria-label="Aung Hla Paing home">AHP<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" title="Switch theme">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.3 15.4A8.5 8.5 0 0 1 8.6 3.7 8.5 8.5 0 1 0 20.3 15.4Z"/></svg>
+        </button>
+      </nav>
+    </header>
+    <main id="top">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Operations · Technology · People</div>
+          <h1>Aung Hla<br><em>Paing.</em></h1>
+          <p class="intro">I turn day-to-day challenges into smoother experiences — combining customer care, project coordination, and practical AI-powered automation.</p>
+          <a class="cta" href="#experience">EXPLORE MY EXPERIENCE <span>↗</span></a>
+        </div>
+        <div class="art" aria-label="Abstract ocean-inspired line art" role="img">
+          <div class="sun"></div>
+          <div class="wave"><svg viewBox="0 0 500 200" preserveAspectRatio="none"><path d="M-20 100 C 50 20, 100 180, 180 100 S 310 20, 390 100 S 500 180, 540 90"/><path d="M-20 100 C 50 20, 100 180, 180 100 S 310 20, 390 100 S 500 180, 540 90"/><path d="M-20 100 C 50 20, 100 180, 180 100 S 310 20, 390 100 S 500 180, 540 90"/></svg></div>
+          <span class="art-note">Curious by nature · Bangkok</span>
+        </div>
+        <div class="meta"><span>First-Class BSc Computer Science</span><span>Bangkok, Thailand · Near MRT Si Kritha</span></div>
+      </div>
+      <section id="experience">
+        <div class="section-head"><h2>Experience</h2><span class="section-kicker">Customer care · Operations · Projects</span></div>
+        <div class="projects">
+          <article class="project"><div class="project-top"><span>01 / E-COMMERCE SPECIALIST</span><span>AUG 2025 — SEP 2026</span></div><div><h3>Super Export Shop</h3><p>Supported customers across phone, email, chat, and social channels; managed Shopify operations and product visuals; built n8n and LLM email automations to improve service workflows.</p></div></article>
+          <article class="project"><div class="project-top"><span>02 / PROJECT COORDINATOR</span><span>2025 — 2026</span></div><div><h3>VarCamp</h3><p>Coordinated virtual events for 500–700 attendees, managing schedules, cross-functional communication, event logistics, and live technical support.</p></div></article>
+          <article class="project"><div class="project-top"><span>03 / FRONT DESK AGENT</span><span>FEB 2020 — SEP 2021</span></div><div><h3>Family Hotel</h3><p>Handled guest check-in, reservations, payments, and requests while resolving concerns with care in a busy hospitality environment.</p></div></article>
+          <article class="project"><div class="project-top"><span>04 / EDUCATION</span><span>2021 — 2025</span></div><div><h3>Computing &amp; Communication</h3><p>BSc (Hons) Computer Science, First-Class — University of Sunderland · BTEC Level 5 HND Computing, Merit — Info Myanmar College · Media and Communication — Chulalongkorn University.</p></div></article>
+        </div>
+      </section>
+      <section id="about">
+        <div class="section-head"><h2>A little about me</h2><span class="section-kicker">Problem solver · Lifelong learner</span></div>
+        <div class="about-grid">
+          <p>I’m interested in project management, customer support, communication technology, and problem-solving. I enjoy understanding a challenge from the ground up, then making the workflow clearer and more useful for the people relying on it. I bring a thoughtful, adaptable approach to fast-moving teams.</p>
+          <div class="skills"><span>Shopify &amp; e-commerce</span><span>Customer service</span><span>n8n automation</span><span>AI agents &amp; LLMs</span><span>Project coordination</span><span>Jira &amp; Gantt charts</span><span>Canva</span><span>Google Workspace</span><span>Microsoft Office</span><span>Problem-solving</span><span>Cross-cultural communication</span></div>
+        </div>
+      </section>
+      <section id="contact" class="contact">
+        <div><div class="eyebrow">Open to new opportunities</div><h2>Let’s solve<br><em>something together.</em></h2></div>
+        <a class="cta contact-link" href="mailto:aunghlapaing8949@gmail.com">EMAIL AUNG <span>↗</span></a>
+      </section>
+    </main>
+    <footer><span>© 2026 Aung Hla Paing</span><a href="tel:+66935496650">+66 93 549 6650</a><a href="#top">BACK TO TOP ↑</a></footer>
+  </div>
+  <script>
+    const button = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      const isDark = theme === 'dark';
+      button.setAttribute('aria-label', `Switch to ${isDark ? 'day' : 'night'} mode`);
+      icon.innerHTML = isDark
+        ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>'
+        : '<path d="M20.3 15.4A8.5 8.5 0 0 1 8.6 3.7 8.5 8.5 0 1 0 20.3 15.4Z"/>';
+    }
+    setTheme(stored || (prefersDark ? 'dark' : 'light'));
+    button.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
