@@ -51,9 +51,20 @@
     nav a::after { content: ""; position: absolute; height: 1px; left: 0; right: 0; bottom: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .22s ease; }
     nav a:hover, nav a:focus-visible { color: var(--ink); }
     nav a:hover::after, nav a:focus-visible::after { transform: scaleX(1); }
-    .theme-toggle { border: 1px solid var(--line); background: transparent; border-radius: 30px; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; transition: border-color .2s, transform .2s; }
-    .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
-    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle { border: 0; background: transparent; width: 56px; height: 44px; display: grid; place-items: center; cursor: pointer; }
+    .theme-toggle svg { width: 48px; height: 37px; overflow: visible; }
+    .theme-toggle .book-page { stroke: var(--muted); stroke-width: 1.15; stroke-linejoin: round; transition: fill .28s ease, transform .32s ease; }
+    .theme-toggle .book-left { transform-origin: 24px 18px; }
+    .theme-toggle .book-right { transform-origin: 24px 18px; transition-delay: .12s; }
+    [data-theme="light"] .theme-toggle .book-left { fill: var(--paper); }
+    [data-theme="light"] .theme-toggle .book-right { fill: var(--surface); }
+    [data-theme="dark"] .theme-toggle .book-left { fill: var(--surface); }
+    [data-theme="dark"] .theme-toggle .book-right { fill: var(--paper); }
+    .theme-toggle .mode-icon { color: var(--muted); fill: currentColor; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; opacity: .85; transition: color .25s ease, opacity .25s ease; }
+    .theme-toggle .mode-dark { transform: rotate(-35deg); transform-origin: 37.4px 18px; }
+    [data-theme="light"] .theme-toggle .mode-light,
+    [data-theme="dark"] .theme-toggle .mode-dark { color: var(--accent); stroke: var(--accent); opacity: 1; }
+    .theme-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     .hero { min-height: 700px; display: grid; grid-template-columns: 1fr .86fr; align-items: center; gap: clamp(38px, 7vw, 92px); padding: 64px 0 100px; position: relative; }
     .eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font: 14px var(--mono); display: flex; align-items: center; gap: 12px; }
     .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); }
@@ -131,7 +142,7 @@
       footer { flex-wrap: wrap; justify-content: center; gap: 10px 18px; padding: 18px 0; text-align: center; }
     }
     @media (max-width: 560px) { .wordmark small { display: none; } nav { gap: 8px; font-size: 12px; } }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-delay: 0ms !important; } }
   </style>
 </head>
 <body>
@@ -141,7 +152,17 @@
       <nav aria-label="Main navigation">
         <a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" title="Switch theme">
-          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.3 15.4A8.5 8.5 0 0 1 8.6 3.7 8.5 8.5 0 1 0 20.3 15.4Z"/></svg>
+          <svg id="theme-icon" viewBox="0 0 48 36" fill="none" aria-hidden="true">
+            <path class="book-page book-left" d="M24 8C18.4 4.8 10.2 4.4 3.5 6.5v22c7-2.7 14.2-1.8 20.5 3V8Z"/>
+            <path class="book-page book-right" d="M24 8c5.6-3.2 13.8-3.6 20.5-1.5v22c-7-2.7-14.2-1.8-20.5 3V8Z"/>
+            <path d="M4 29.6c7-2.1 13.7-1 20 3.2 6.3-4.2 13-5.3 20-3.2v1.8c-7-1.8-13.7-.7-20 3.3-6.3-4-13-5.1-20-3.3v-1.8Z" fill="var(--accent)"/>
+            <path d="M24 8v22.5" stroke="var(--muted)" stroke-width="1.15" stroke-linecap="round"/>
+            <g class="mode-icon mode-light" aria-hidden="true">
+              <circle cx="13.5" cy="18" r="3.2" stroke="none"/>
+              <path d="M13.5 12.7v-1.6m0 13.8v-1.6M8.2 18H6.6m13.8 0h-1.6m-9-3.8-1.1-1.1m9.6 9.6-1.1-1.1m0-7.4 1.1-1.1m-9.6 9.6 1.1-1.1" fill="none" stroke-width="1.2"/>
+            </g>
+            <path class="mode-icon mode-dark" d="M37.4 12.2a5.8 5.8 0 1 0 0 11.6 4.5 5.8 0 0 1 0-11.6Z" stroke="none" aria-hidden="true"/>
+          </svg>
         </button>
       </nav>
     </header>
@@ -190,16 +211,12 @@
   </div>
   <script>
     const button = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
     const stored = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     function setTheme(theme) {
       document.documentElement.dataset.theme = theme;
       const isDark = theme === 'dark';
       button.setAttribute('aria-label', `Switch to ${isDark ? 'day' : 'night'} mode`);
-      icon.innerHTML = isDark
-        ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>'
-        : '<path d="M20.3 15.4A8.5 8.5 0 0 1 8.6 3.7 8.5 8.5 0 1 0 20.3 15.4Z"/>';
     }
     setTheme(stored || (prefersDark ? 'dark' : 'light'));
     button.addEventListener('click', () => {
