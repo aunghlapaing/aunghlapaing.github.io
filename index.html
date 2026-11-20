@@ -221,6 +221,9 @@
       .bottom-grid { grid-template-columns:1fr; }
       .christmas-card { min-height:420px; }
       .contact { align-items:flex-start; flex-direction:column; padding:20px; }
+      .gift-row { position:relative; }
+      .gift-wrap { position:static; }
+      .wish-message { position:absolute; z-index:5; right:auto; bottom:calc(100% + 10px); left:50%; width:min(280px,calc(100vw - 56px)); transform:translateX(-50%); }
       footer { flex-wrap:wrap; justify-content:center; text-align:center; }
     }
     @media(max-width:420px) {
